@@ -1,0 +1,235 @@
+// Variables
+$primary-color: #8172ff;
+$secondary-color: #9992ff;
+$background-color: #f2f2f2;
+$text-color: #333;
+$border-color: #ddd;
+$border-radius: 8px;
+$padding: 16px;
+$font-family: "Roboto", sans-serif;
+$font-weight: 600;
+
+* {
+  box-sizing: border-box;
+}
+
+// Global Styles
+body {
+  font-family: $font-family;
+  color: $text-color;
+  background-color: $background-color;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: $font-weight;
+}
+
+p {
+  line-height: 1.6;
+}
+
+// Containers
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $padding;
+  * {
+    margin: 0.5rem;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+// Buttons
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: $border-radius;
+  background-color: $secondary-color;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: $font-weight;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: $primary-color;
+  }
+  &:focus {
+    outline: none;
+  }
+  &--secondary {
+    background-color: $secondary-color;
+    &:hover {
+      background-color: darken($secondary-color, 10%);
+    }
+  }
+}
+
+// Inputs
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  width: 100%;
+  max-width: 500px;
+  padding: 1rem;
+  border: 2px solid $border-color;
+  border-radius: $border-radius;
+  box-sizing: border-box;
+  font-size: 1rem;
+
+  &:hover {
+    border-color: $secondary-color;
+  }
+
+  &:focus {
+    border-color: $primary-color;
+    outline: none;
+  }
+}
+
+// Tables
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: $padding;
+  th,
+  td {
+    padding: 0.75em;
+    border: 1px solid $border-color;
+    text-align: left;
+  }
+  th {
+    background-color: $background-color;
+  }
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+}
+
+// Headers
+.header {
+  background-color: $primary-color;
+  color: #fff;
+  padding: $padding;
+  text-align: center;
+  border-radius: $border-radius $border-radius 0 0;
+  margin-bottom: $padding;
+}
+
+// Footer
+.footer {
+  background-color: $secondary-color;
+  color: #fff;
+  padding: $padding;
+  text-align: center;
+  border-radius: 0 0 $border-radius $border-radius;
+  margin-top: $padding;
+}
+
+// Listing Items
+.listing-item {
+  display: flex;
+  align-items: center;
+  padding: $padding;
+  border-bottom: 1px solid $border-color;
+  &:last-child {
+    border-bottom: none;
+  }
+  .listing-item__icon {
+    margin-right: $padding;
+    font-size: 2rem;
+    color: $primary-color;
+  }
+  .listing-item__details {
+    flex-grow: 1;
+    .listing-item__name {
+      font-size: 1.25rem;
+      font-weight: $font-weight;
+    }
+    .listing-item__price {
+      color: $secondary-color;
+      font-size: 1rem;
+    }
+  }
+}
+
+// Utility Classes
+.mt-0 {
+  margin-top: 0;
+}
+.mt-1 {
+  margin-top: $padding / 2;
+}
+.mt-2 {
+  margin-top: $padding;
+}
+.mt-3 {
+  margin-top: $padding * 1.5;
+}
+.mt-4 {
+  margin-top: $padding * 2;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+.mb-1 {
+  margin-bottom: $padding / 2;
+}
+.mb-2 {
+  margin-bottom: $padding;
+}
+.mb-3 {
+  margin-bottom: $padding * 1.5;
+}
+.mb-4 {
+  margin-bottom: $padding * 2;
+}
+
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+.main-color {
+  color: $primary-color;
+}
+
+.secondary-color {
+  color: $secondary-color;
+}
+
+.line,
+hr {
+  border: none;
+  border-bottom: 2px solid $secondary-color;
+  margin-bottom: $padding;
+}
+
+.no-display {
+  display: none;
+}

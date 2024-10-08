@@ -1,0 +1,46 @@
+.coin_loader {
+  display: flex;
+  justify-content: center;
+
+  button {
+    width: 100%;
+    max-width: 150px;
+  }
+}
+
+.cards_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  padding: 2rem 0;
+  padding-bottom: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border: 2px solid $secondary-color;
+  background-color: white;
+  height: 200px;
+  border-radius: 8px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s, border-color 0.5s;
+  transform: scale(1);
+  text-align: center;
+
+  &:hover {
+    border-color: $primary-color;
+    transform: scale(1.03);
+  }
+
+  .btn {
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+  }
+}
