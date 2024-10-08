@@ -1,0 +1,4 @@
+sudo nginx -c /home/savely/Documents/projects/services/coins_listener/nginx.conf
+sudo nginx -c /home/savely/Documents/projects/services/coins_listener/nginx.conf -g 'daemon off;'
+
+sudo nginx -s stop -c /home/savely/Documents/projects/services/coins_listener/nginx.conf
