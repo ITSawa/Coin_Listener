@@ -1,4 +1,116 @@
-sudo nginx -c /home/savely/Documents/projects/services/coins_listener/nginx.conf
-sudo nginx -c /home/savely/Documents/projects/services/coins_listener/nginx.conf -g 'daemon off;'
+Coin Listener Server
 
-sudo nginx -s stop -c /home/savely/Documents/projects/services/coins_listener/nginx.conf
+This project collects information about various coins and serves it through an API. It also provides configuration for Nginx to handle HTTP and HTTPS requests.
+
+Prerequisites
+
+Before running the server and Nginx, ensure you have the following installed:
+
+Node.js
+Nginx
+Running the Coin Listener Server
+
+To start the server that gathers information about coins, follow these steps:
+
+Navigate to the server directory:
+
+bash
+
+cd ./server
+Start the server using Node.js:
+
+css
+
+node main
+Running Nginx with Different Configurations
+
+To run Nginx with the provided configurations, use one of the following commands, depending on whether you want to use HTTP or HTTPS. Make sure to replace the paths with your actual configuration file paths.
+
+For HTTP
+
+bash
+
+sudo nginx -c /home/savely/Documents/projects/services/coins_listener/http_nginx.conf
+For HTTPS
+
+Before running Nginx with HTTPS, you need to obtain an SSL certificate and configure Nginx accordingly. Use the following command:
+
+bash
+
+sudo nginx -c /home/savely/Documents/projects/services/coins_listener/https_nginx.conf
+Nginx Configuration
+
+Here is an example configuration for Nginx (http_nginx.conf and https_nginx.conf):
+
+bash
+
+worker_processes auto;
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    default_type application/octet-stream;
+
+    types {
+        text/css css;
+        application/javascript js;
+        text/html html htm;
+    }
+
+    sendfile on;
+    keepalive_timeout 65;
+
+    server {
+        listen 80;
+        server_name localhost;
+
+        location / {
+            root /home/savely/Documents/projects/services/coins_listener/client/dist;
+            index index.html index.htm;
+            try_files $uri $uri/ /index.html;
+        }
+
+        location /backend {
+            rewrite ^/backend/(.*) /$1 break;
+
+            proxy_pass http://localhost:3030;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+    }
+
+    server {
+        listen 443 ssl;
+        server_name localhost;
+
+        ssl_certificate ./ssl/server.crt;
+        ssl_certificate_key ./ssl/server.key;
+
+        location / {
+            root /home/savely/Documents/projects/services/coins_listener/client/dist;
+            index index.html index.htm;
+            try_files $uri $uri/ /index.html;
+        }
+
+        location /backend {
+            rewrite ^/backend/(.*) /$1 break;
+
+            proxy_pass http://localhost:3030;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+    }
+}
+Conclusion
+
+Follow the steps above to run the Coin Listener server and configure Nginx for your application. Ensure that all paths are correctly set according to your directory structure.
+
+For any further assistance or issues, feel free to reach out!
